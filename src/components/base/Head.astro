@@ -1,28 +1,17 @@
 ---
-import { ClientRouter } from "astro:transitions";
-
 const { pageTitle, pageDescription } = Astro.props;
 ---
 
 <meta charset="UTF-8" />
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
 <meta name="description" content={pageDescription} />
 <meta name="theme-color" content="#0a0a0a" />
 <meta property="og:title" content="Algarve WebCraft | Hand-Coded Websites" />
-<meta
-  property="og:description"
-  content="Affordable, hand-coded websites for small businesses in Portugal."
-/>
-<meta
-  property="og:image"
-  content="https://algarvewebcraft.com/images/og-logo.webp"
-/>
+<meta property="og:description" content="Affordable, hand-coded websites for small businesses in Portugal." />
+<meta property="og:image" content="https://algarvewebcraft.com/images/og-logo.webp" />
 <meta property="og:url" content="https://algarvewebcraft.com/" />
 <meta property="og:type" content="website" />
 <!-- <link rel="icon" type="image/x-icon" href="/assets/logos/favicon-logo.ico">
@@ -34,7 +23,6 @@ const { pageTitle, pageDescription } = Astro.props;
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/"> -->
-<ClientRouter />
 <script is:inline>
   (() => {
     const themeQuery = window.matchMedia("(prefers-color-scheme: dark)");

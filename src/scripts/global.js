@@ -6,8 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("astro:page-load", () => {
-  /* darkMode(); */
-
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   requestAnimationFrame(() => {
@@ -29,9 +27,7 @@ function gsapScrollAnimations() {
 
   ScrollTrigger.defaults({ markers: true }); // Enable markers to show where the scroller starts and ends while planning
 
-  const animatedElements = document.querySelectorAll(
-    "[data-animate]:not([data-animate-group] [data-animate])",
-  );
+  const animatedElements = document.querySelectorAll("[data-animate]:not([data-animate-group] [data-animate])");
 
   /* Add 'data-animate' to the elements you want to animate from the list below ie. data-animate="slide-up". */
   /* Add 'data-scrub' to make the elements slowly scrub in with the scroller instead of popping in as the trigger is hit. */
@@ -149,9 +145,7 @@ function gsapScrollAnimations() {
         end: "top 45%",
         scrub: addScrub ? 5 : false, // Change number to increase or decrease the speed of the scrub when added.
         once: isReversible ? false : true,
-        toggleActions: isReversible
-          ? "play none none reverse"
-          : "play none none none",
+        toggleActions: isReversible ? "play none none reverse" : "play none none none",
       },
     });
   });

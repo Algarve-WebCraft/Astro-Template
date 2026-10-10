@@ -1,4 +1,6 @@
 ---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import heroImage from "@assets/hero-image.jpg";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import heroImage from "../assets/hero-image.jpg";
 import { Image } from "astro:assets";
@@ -71,7 +73,7 @@ const pageDescription = "Page Description";
 <style></style>
 
 <script>
-  import { gsapOpeningHomeAnimations } from "../scripts/gsapHomeAnimations.js";
+  import { gsapOpeningHomeAnimations } from "@scripts/gsapHomeAnimations.js";
 
   document.addEventListener("astro:page-load", () => {
     gsapOpeningHomeAnimations();
