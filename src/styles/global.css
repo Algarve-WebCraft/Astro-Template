@@ -128,55 +128,47 @@
 
     /* Font-Size / Line-Height / Letter-Spacing */
 
+    --fs-11: 0.6875rem;
     --fs-12: 0.75rem;
     --fs-13: 0.8125rem;
     --fs-14: 0.875rem;
     --fs-15: 0.9375rem;
     --fs-16: 1rem;
+    --fs-17: 1.0625rem;
     --fs-18: 1.125rem;
-    --fs-20: 1.25rem;
     --fs-22: 1.375rem;
     --fs-24: 1.5rem;
     --fs-28: 1.75rem;
     --fs-36: 2.25rem;
-    --fs-44: 2.75rem;
+    --fs-40: 2.5rem;
     --fs-56: 3.5rem;
-    --fs-76: 4.75rem;
-    --fs-88: 5.5rem;
-    --fs-96: 6rem;
 
-    --fs-va-topper-heading: clamp(var(--fs-12), 0.5vw + 0.4rem, var(--fs-13));
-    --fs-va-hero-heading: clamp(var(--fs-44), 3vw + 0.5rem, var(--fs-76));
     --fs-va-main-heading: clamp(var(--fs-36), 2vw + 0.5rem, var(--fs-56));
-    --fs-va-body-text: clamp(var(--fs-14), 0.6vw + 0.4rem, var(--fs-20));
-    --fs-va-nav-text: clamp(var(--fs-16), 3vw + 0.5rem, var(--fs-18));
-    --fs-va-btn-text: var(--fs-16);
+    --fs-va-body-text: clamp(var(--fs-13), 0.6vw + 0.4rem, var(--fs-15));
+    --fs-va-body-mini-text: clamp(var(--fs-12), 0.6vw + 0.4rem, var(--fs-13));
 
-    --lh-096: 0.96;
     --lh-100: 1;
-    --lh-105: 1.05;
-    --lh-130: 1.3;
+    --lh-120: 1.2;
+    --lh-125: 1.25;
+    --lh-145: 1.45;
     --lh-155: 1.55;
     --lh-160: 1.6;
-    --lh-165: 1.65;
 
-    --ls-neg-05: -0.005em;
+    --ls-neg-1: -0.01em;
     --ls-neg-2: -0.02em;
     --ls-neg-3: -0.03em;
     --ls-neg-4: -0.04em;
-    --ls-neg-5: -0.05em;
 
     --ls-0: 0em;
 
     --ls-pos-015: 0.015em;
+    --ls-pos-1: 0.01em;
     --ls-pos-5: 0.05em;
-    --ls-pos-8: 0.08em;
-    --ls-pos-10: 0.1em;
 
     /* Font-Family + Font-Weight */
 
-    --ff-geist: "Geist", sans-serif;
-    --ff-geist-mono: "Geist Mono", monospace;
+    --ff-news: "Newsreader", sans-serif;
+    --ff-jakarta: "Plus Jakarta Sans", sans-serif;
 
     --fw-regular: 400;
     --fw-medium: 500;
@@ -184,6 +176,7 @@
 
     /* Space + Padding + Wrapper */
 
+    --sp-12: 0.75rem;
     --sp-14: 0.875rem;
     --sp-16: 1rem;
     --sp-18: 1.125rem;
@@ -215,21 +208,23 @@
 
     /* Colours */
 
-    --clr-base-green: oklch(79.38% 0.11696 205.623);
-    --clr-base-blue: oklch(57.507% 0.17923 290.184);
-    --clr-black-10: oklch(15.038% 0.00877 274.27);
-    --clr-black-20: oklch(16.672% 0.04116 244.056);
-    --clr-white-10: oklch(100% 0.00011 271.152);
-    --clr-white-20: oklch(97.295% 0.00298 264.794);
-    --clr-blur-10: oklch(79.38% 0.11696 205.623 / 0.102);
-    --clr-blur-20: oklch(79.38% 0.11696 205.623 / 0.161);
-    --clr-blur-30: oklch(71.847% 0.11898 209.114 / 0.102);
-    --clr-blur-40: oklch(70.888% 0.16012 286.466 / 0.102);
-    --clr-blur-50: oklch(70.888% 0.16012 286.466 / 0.122);
-    --clr-gradient-10: linear-gradient(in oklab to right, var(--clr-blue-200), var(--clr-purple-300));
+    --clr-white-10: #f3f4f5;
+    --clr-white-20: #e7e8e9;
+    --clr-black-10: #000;
+    --clr-black-20: #151d23;
+    --clr-black-30: #313335;
+    --clr-black-40: #6a6d70;
+    --clr-green-10: #25d366;
+    --clr-brown-10: #7a582f;
+    --clr-pink-10: #ff385c;
+    --clr-beige-10: #fecf9d;
+    --box-shadow-10: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --box-shadow-20: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+    --box-shadow-25: 0 20px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    --box-shadow-30: 0 20px 25px -5px rgba(0, 0, 0, 0.02), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
 
     :focus-visible {
-      outline: 2px solid var(--clr-base-blue);
+      outline: 2px solid var(--clr-black-20);
       outline-offset: 2px;
     }
   }
@@ -351,13 +346,11 @@
   html {
     scrollbar-width: thin;
 
-    &.is-loading body {
-      opacity: 0 !important;
+    &.home-intro-pending body.home {
+      opacity: 0;
     }
 
-    &.has-smooth-scroll {
-      scroll-behavior: smooth;
-    }
+    scroll-behavior: auto !important;
   }
 
   html,

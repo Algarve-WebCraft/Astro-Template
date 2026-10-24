@@ -4,15 +4,25 @@ import { gsap } from "gsap";
 
 export function gsapOpeningHomeAnimations() {
   const body = document.body;
+  const html = document.documentElement;
 
   // Use isMobile to set different animation timings depending on screen size. Use this in place of timing - `${isMobile.matches ? "-=5.5" : "-=4.2"}`
   const isMobile = window.matchMedia("(max-width: 62.5rem)");
 
-  if (!document.body.classList.contains("home")) return;
+  if (!body.classList.contains("home")) return;
 
-  // Use onComplete() to add the animation classs back in after that specific animation is finished.
+  if (!html.classList.contains("home-intro-pending")) {
+    gsap.set(body, { opacity: 1 });
+    return;
+  }
 
-  return;
+  // This MUST be used at the end of the animation so the animation will not run again unless webpage completely reopened.
+  /* onComplete: () => {
+        html.classList.remove("home-intro-pending");
+        body.classList.add("home-intro-complete");
+        sessionStorage.setItem("home-intro-complete", "true");
+      },
+  */
 
   // Snaps to the top of the screen when the home page is loaded.
   window.addEventListener("load", () => {
@@ -31,7 +41,24 @@ export function gsapOpeningHomeAnimations() {
     delay: 0.2,
   });
 
-  //Use .set to set the initial state of the element before the animation starts if you need to make sure it is in the correct state for the intro animation.
+  // Simple whole page fade in for the most simple opening animation.
+  /* gsap.fromTo(
+    body,
+    { opacity: 0 },
+    {
+      opacity: 1,
+      duration: 2.25,
+      delay: 0.35,
+      ease: "power4.out",
+      onComplete: () => {
+        html.classList.remove("home-intro-pending");
+        body.classList.add("home-intro-complete");
+        sessionStorage.setItem("home-intro-complete", "true");
+      },
+    },
+  ); */
+
+  // Use .set to set the initial state of the element before the animation starts if you need to make sure it is in the correct state for the intro animation.
   gsap.set(".cmp-main-btn--dark-btn", {
     transition: "none",
   });

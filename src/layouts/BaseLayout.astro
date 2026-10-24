@@ -19,9 +19,11 @@ const { bodyClass, pageTitle, pageDescription } = Astro.props;
 
   <body class={bodyClass}>
     <Header transition:persist />
+
     <main transition:animate="fade">
       <slot />
     </main>
+
     <Footer />
   </body>
 </html>

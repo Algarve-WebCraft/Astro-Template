@@ -16,9 +16,9 @@ const portugueseURL = getLocalizedPath("pt", currentPage);
 
 const navItems = [
   { page: "home", label: locale === "pt" ? "Início" : "Home" },
-  { page: "about", label: locale === "pt" ? "Sobre" : "About" },
-  { page: "menu", label: "Menu" },
-  { page: "gallery", label: locale === "pt" ? "Galeria" : "Gallery" },
+  { page: "transfers", label: locale === "pt" ? "Transferencias" : "Transfers" },
+  { page: "cleaning", label: locale === "pt" ? "Limpeza" : "Cleaning" },
+  { page: "rental", label: locale === "pt" ? "Alojamento" : "Rental" },
   { page: "contact", label: locale === "pt" ? "Contacto" : "Contact" },
 ] as const;
 ---
@@ -44,26 +44,6 @@ const navItems = [
           />
         </a> -->
       </div>
-
-      <!-- <nav id="navigation" class="nav-bar">
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/about/">About Us</a>
-          </li>
-          <li>
-            <a href="/menu/">Menu</a>
-          </li>
-          <li>
-            <a href="/gallery/">Gallery</a>
-          </li>
-          <li>
-            <a href="/contact/">Contact</a>
-          </li>
-        </ul>
-      </nav> -->
 
       <nav id="navigation" class="nav-bar">
         <ul>
@@ -207,6 +187,25 @@ const navItems = [
     }
   }
 
+  .language-switcher {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+    right: 0.75rem;
+
+    @media (width > 47.5rem) {
+      right: 2rem;
+    }
+
+    a {
+      transition: opacity 0.2s ease-out;
+
+      &:hover {
+        opacity: 0.55;
+      }
+    }
+  }
+
   .hamburger-btn-box {
     display: flex;
     align-items: center;
@@ -275,40 +274,34 @@ const navItems = [
 
   .nav-bar {
     position: absolute;
-    background-color: var(--clr-black-10);
+    display: grid;
+    place-content: center;
+    background-color: var(--clr-white-10);
     font-size: var(--fs-nav-text);
-    font-family: var(--ff-geist-mono);
-    font-weight: var(--fw-regular);
-    top: 100%;
-    right: 0;
-    left: 0;
-    width: 18em;
-    margin-inline: auto;
+    font-family: var(--ff-jakarta);
+    font-weight: var(--fw-medium);
     padding: 2em;
+    min-height: 100vh;
     text-align: center;
-    z-index: -1;
-    border: 5px solid var(--clr-black-20);
-    border-bottom-left-radius: 4.7rem;
-    border-bottom-right-radius: 4.7rem;
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.04),
-      0 8px 24px rgba(45, 45, 45, 0.15),
-      0 24px 48px rgba(54, 54, 54, 0.07);
+    text-transform: uppercase;
+    inset: 0;
+    margin-inline: auto;
+    text-align: center;
+    z-index: 1;
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    transform: translateY(-150%);
-    /* prettier-ignore */
-    transition: transform 1s linear(0, 1 44.7%, 0.898 51.8%, 0.874 55.1%, 0.866 58.4%, 0.888 64.3%, 1 77.4%, 0.98 84.5%, 1);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-out;
 
-    @media (width > 47.5rem) {
+    @media (width > 68.75rem) {
       position: relative;
       width: 100%;
+      min-height: unset;
       background-color: inherit;
       padding: 0;
       z-index: 0;
-      box-shadow: none;
-      border: none;
+      inset: unset;
       transform: translateY(0);
 
       & li:not(:last-of-type)::after {
@@ -320,37 +313,26 @@ const navItems = [
     ul {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 2rem;
       width: fit-content;
       margin-inline: auto;
-      margin-bottom: 0;
+      margin-bottom: 8rem;
 
-      @media (width > 47.5rem) {
+      @media (width > 68.75rem) {
         flex-direction: row;
-        gap: 3rem;
-      }
-    }
-
-    & li:not(:last-of-type)::after {
-      content: "";
-      display: block;
-      background: var(--clr-base-green);
-      height: 2px;
-      width: 5rem;
-      margin-top: 1rem;
-      margin-inline: auto;
-      opacity: 0.1;
-
-      @media (width > 47.5rem) {
-        display: none;
+        gap: 2.5rem;
+        margin-bottom: unset;
       }
     }
 
     a {
-      transition: color 0.2s ease-out;
+      transition:
+        color 0.2s ease-out,
+        opacity 0.2s ease-out;
 
-      &:hover {
-        color: var(--clr-base-green);
+      &:hover:not(.active-link) {
+        opacity: 0.55;
       }
 
       &:focus-visible {
@@ -358,16 +340,7 @@ const navItems = [
       }
 
       &.active-link {
-        font-weight: var(--fw-semibold);
-        color: red;
-
-        @media (width > 47.5rem) {
-          & {
-            position: relative;
-            background: var(--clr-gradient-vertical);
-            color: blue;
-          }
-        }
+        color: #a27339;
       }
     }
   }
@@ -385,6 +358,7 @@ const navItems = [
   document.addEventListener("astro:page-load", () => {
     updateActiveNavLink();
     activateHamburgerMenu();
+    initStickyHeader();
   });
 
   function activateHamburgerMenu() {
@@ -472,6 +446,30 @@ const navItems = [
         requestAnimationFrame(() => {
           link.classList.add("animate-underline");
         });
+      }
+    });
+  }
+
+  function initStickyHeader() {
+    const hamburgerBtn = document.querySelector(".hamburger-btn");
+    const navBar = document.querySelector(".nav-bar");
+
+    function closeMenuSafely() {
+      navBar.classList.remove("hamburger-btn__open");
+      hamburgerBtn.classList.remove("active");
+    }
+
+    window.addEventListener("scroll", () => {
+      const header = document.querySelector("#header");
+      const isScrolled = window.scrollY > 400;
+      const headerWasSticking = header.classList.contains("sticking");
+
+      if (isScrolled && !headerWasSticking) {
+        header.classList.add("sticking");
+        closeMenuSafely();
+      } else if (window.scrollY < 5 && headerWasSticking) {
+        header.classList.remove("sticking");
+        closeMenuSafely();
       }
     });
   }

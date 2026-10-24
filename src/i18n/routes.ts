@@ -1,16 +1,16 @@
 export const routes = {
   en: {
     home: "",
-    about: "about",
-    menu: "menu",
-    gallery: "gallery",
+    transfers: "transfers",
+    cleaning: "cleaning",
+    rental: "rental",
     contact: "contact",
   },
   pt: {
     home: "",
-    about: "sobre",
-    menu: "menu",
-    gallery: "galeria",
+    transfers: "transferencias",
+    cleaning: "limpeza",
+    rental: "alojamento",
     contact: "contacto",
   },
 } as const;

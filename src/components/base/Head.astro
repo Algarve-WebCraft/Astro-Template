@@ -4,7 +4,6 @@ const { pageTitle, pageDescription } = Astro.props;
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
 <meta name="description" content={pageDescription} />
@@ -41,6 +40,16 @@ const { pageTitle, pageDescription } = Astro.props;
     syncTheme();
 
     document.addEventListener("astro:after-swap", syncTheme);
+  })();
+</script>
+<script is:inline>
+  (() => {
+    const path = location.pathname.replace(/\/+$/, "") || "/";
+    const isHome = path === "/" || path === "/pt";
+
+    if (isHome && sessionStorage.getItem("home-intro-complete") !== "true") {
+      document.documentElement.classList.add("home-intro-pending");
+    }
   })();
 </script>
 <title>{pageTitle}</title>

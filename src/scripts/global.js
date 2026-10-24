@@ -199,30 +199,3 @@ function gsapScrollAnimations() {
     });
   });
 }
-
-///////////////////////////////////////////////////////////////* Sticky navigation bar *//////////////////////////////////////////////////////////////////////////////*
-
-function initStickyHeader() {
-  const hamburgerBtn = document.querySelector(".hamburger-btn");
-  const navBar = document.querySelector(".nav-bar");
-
-  function closeMenuSafely() {
-    navBar.classList.remove("hamburger-btn__open");
-    hamburgerBtn.classList.remove("active");
-    setNavAttributes();
-  }
-
-  window.addEventListener("scroll", () => {
-    const header = document.querySelector("#header");
-    const isScrolled = window.scrollY > 400;
-    const headerWasSticking = header.classList.contains("sticking");
-
-    if (isScrolled && !headerWasSticking) {
-      header.classList.add("sticking");
-      closeMenuSafely();
-    } else if (window.scrollY === 0 && headerWasSticking) {
-      header.classList.remove("sticking");
-      closeMenuSafely();
-    }
-  });
-}
